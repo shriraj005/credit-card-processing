@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBI Card Sprint</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0A1E8F;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px;
+        }
+        .left {
+            width: 45%;
+            text-align: left;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Adjust spacing between logo and text */
+        }
+        .bank-logo {
+            width: 100px; /* Adjust size as needed */
+            height: auto;
+        }
+        .left h1 {
+            font-size: 25px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .left p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .left ul {
+            list-style-type: none;
+            padding: 0;
+            font-size: 18px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .buttons a {
+            text-decoration: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .apply-btn {
+            background-color: #007BFF;
+        }
+        .right {
+            width: 45%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: black;
+        }
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+        }
+        .carousel-item {
+            display: none;
+        }
+        .carousel-item.active {
+            display: block;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        .footer {
+            text-align: center;
+            padding: 120px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <div class="logo-container">
+                <img src="images\logo.jpg" alt="Bank Logo" class="bank-logo">
+                <h1>Alliance Corporation Bank</h1>
+            </div>
+            <p> </p>
+            <p> </p>
+            <h1>Think it. Get it.</h1>
+            <p>Now get Alliance Corporation Bank Credit Cards instantly!</p>
+            <p>While you proceed, we request you to keep the following details handy:</p>
+            <ul>
+                <li>PAN</li>
+                <li>Aadhaar number</li>
+                <li>Bank A/c details</li>
+            </ul>
+            <div class="buttons">
+                <a href="Applyingcard.html" class="apply-btn">Start apply journey →</a>
+            </div>
+        </div>
+        <div class="right">
+            <h3></h3>
+            <p></p>
+            <div class="carousel">
+                <button class="carousel-btn prev" onclick="changeSlide(-1)">❮</button>
+                <div class="carousel-item active">
+                    <h4>Apply credit card with just 3 easy steps</h4>
+                    <img src="https://www.sbicard.com/sprint/static/media/Group%201691.eca26b58.png" alt="Onboarding Step">
+                </div>
+                <div class="carousel-item">
+                    <h4>Step 1</h4>
+                    <h4>Apply credit card with just 3 easy steps</h4>
+                    <img src="https://www.sbicard.com/sprint/static/media/Group%201715.a1f641b2.png">
+                </div>
+                <div class="carousel-item">
+                    <h4>Step 2</h4>
+                    <h4>Apply credit card with just 3 easy steps</h4>
+                    <img src="https://www.sbicard.com/sprint/static/media/Group%201693.5c9aacd5.png">
+                </div>
+                <div class="carousel-item">
+                    <h4>Step 3</h4>
+                    <h4>Apply credit card with just 3 easy steps</h4>
+                    <img src="https://www.sbicard.com/sprint/static/media/Group%201692.9608d266.png" alt="Step 3">
+                </div>
+                <button class="carousel-btn next" onclick="changeSlide(1)">❯</button>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2025 Alliance Corporation Bank | Terms & Conditions | Privacy Policy</p>
+    </footer>
+    <script>
+        let currentIndex = 0;
+        const items = document.querySelectorAll('.carousel-item');
+
+        function changeSlide(direction) {
+            items[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + direction + items.length) % items.length;
+            items[currentIndex].classList.add('active');
+        }
+    </script>
+</body>
+</html>
